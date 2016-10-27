@@ -45,5 +45,29 @@ namespace ReverseTest
         {
             Assert.AreEqual(Reverses.VisualBasic(original), reversed);
         }
+
+        [TestMethod]
+        public void PointerTest()
+        {
+            Assert.AreEqual(Reverses.Pointer(original), reversed);
+        }
+
+        [TestMethod]
+        public void ConcatTest()
+        {
+            Assert.AreEqual(Reverses.Concat(original), reversed);
+        }
+        
+        [TestMethod]
+        public void StackSBTest()
+        {
+            Assert.AreEqual(Reverses.StackSB(original), reversed);
+        }
+
+        [TestMethod]
+        public void StackYieldTest()
+        {
+            Assert.AreEqual(Reverses.StackYield(original), reversed);
+        }
     }
 }

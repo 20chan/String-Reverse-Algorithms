@@ -15,10 +15,10 @@ namespace Reverse
             return result.ToString();
         }
 
-        public static string XOR(string s)
+        public static string XOR(string str)
         {
-            char[] chars = s.ToCharArray();
-            int len = s.Length - 1;
+            char[] chars = str.ToCharArray();
+            int len = str.Length - 1;
 
             for (int i = 0; i < len; i++, len--)
             {
@@ -44,7 +44,7 @@ namespace Reverse
 
         public static string Yield(string str)
         {
-            return string.Join("", _yield(str));
+            return string.Concat(_yield(str));
         }
 
         private static IEnumerable<char> _yield(string str)
@@ -56,6 +56,53 @@ namespace Reverse
         public static string VisualBasic(string str)
         {
             return Microsoft.VisualBasic.Strings.StrReverse(str);
+        }
+
+        public static unsafe string Pointer(string str)
+        {
+            int len = str.Length;
+            char* reversed = stackalloc char[len];
+            
+            fixed (char* c = str)
+            {
+                int i = 0;
+                int j = i + len - 1;
+                while (i < len)
+                {
+                    reversed[i++] = c[j--];
+                }
+            }
+            return new string(reversed, 0, len);
+        }
+
+        public static string Concat(string str)
+        {
+            return string.Concat(Enumerable.Reverse(str));
+        }
+
+        public static string StackSB(string str)
+        {
+            Stack<char> stack = new Stack<char>();
+            foreach (var c in str)
+                stack.Push(c);
+            StringBuilder sb = new StringBuilder();
+            while (stack.Count > 0)
+                sb.Append(stack.Pop());
+            return sb.ToString();
+        }
+
+        public static string StackYield(string str)
+        {
+            return string.Concat(_stackYield(str));
+        }
+        
+        private static IEnumerable<char> _stackYield(string str)
+        {
+            Stack<char> stack = new Stack<char>();
+            foreach (var c in str)
+                stack.Push(c);
+            while (stack.Count > 0)
+                yield return stack.Pop();
         }
     }
 }
