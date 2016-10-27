@@ -104,5 +104,16 @@ namespace Reverse
             while (stack.Count > 0)
                 yield return stack.Pop();
         }
+
+        public static string Stack(string str)
+        {
+            Stack<char> stack = new Stack<char>(str);
+            return string.Concat(stack);
+        }
+
+        public static string Recursive(string str)
+        {
+            return str == "" ? "" : Recursive(string.Concat(str.Skip(1))) + str[0];
+        }
     }
 }

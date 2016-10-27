@@ -7,9 +7,19 @@ namespace ReverseTest
     [TestClass]
     public class ReverseTests
     {
-        const string original = "To be trusted is a greater compliment than to be loved.";
-        const string reversed = ".devol eb ot naht tnemilpmoc retaerg a si detsurt eb oT";
+        bool testShort = false;
+        readonly string original = "To be trusted is a greater compliment than to be loved.";
+        readonly string reversed = ".devol eb ot naht tnemilpmoc retaerg a si detsurt eb oT";
         
+        public ReverseTests()
+        {
+            if(!testShort)
+            {
+                original = string.Join("\n", System.IO.File.ReadAllLines("original.txt"));
+                reversed = string.Join("\n", System.IO.File.ReadAllLines("reversed.txt"));
+            }
+        }
+
         [TestMethod]
         public void IteratorTest()
         {
@@ -68,6 +78,19 @@ namespace ReverseTest
         public void StackYieldTest()
         {
             Assert.AreEqual(Reverses.StackYield(original), reversed);
+        }
+
+        [TestMethod]
+        public void StackTest()
+        {
+            Assert.AreEqual(Reverses.StackYield(original), reversed);
+        }
+
+        [TestMethod]
+        public void RecursiveTest()
+        {
+            if (original.Length > 10000) Assert.Fail();
+            Assert.AreEqual(Reverses.Recursive(original), reversed);
         }
     }
 }

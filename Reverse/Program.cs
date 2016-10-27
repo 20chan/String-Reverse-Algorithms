@@ -9,8 +9,9 @@ namespace Reverse
     {
         static void Main(string[] args)
         {
-            while (true)
-                Console.WriteLine(Reverses.StackSB(Console.ReadLine()));
+            //while (true)
+                Console.WriteLine(Reverses.Array(System.IO.File.ReadAllText(@"D:\C#\Reverse\ReverseTest\bin\Debug\original.txt")));
+            Console.ReadLine();
         }
     }
 }
