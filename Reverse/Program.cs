@@ -9,6 +9,8 @@ namespace Reverse
     {
         static void Main(string[] args)
         {
+            while (true)
+                Console.WriteLine(Reverses.Yield(Console.ReadLine()));
         }
     }
 }
