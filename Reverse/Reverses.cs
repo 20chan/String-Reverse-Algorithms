@@ -115,5 +115,17 @@ namespace Reverse
         {
             return str == "" ? "" : Recursive(string.Concat(str.Skip(1))) + str[0];
         }
+
+        public static string Bogo(string str)
+        {
+            string reversed = Array(str);
+            Random rnd = new Random();
+            while (true)
+            {
+                var randomized = string.Concat(reversed.OrderBy(x => rnd.Next()));
+                if (reversed == randomized)
+                    return randomized;
+            }
+        }
     }
 }

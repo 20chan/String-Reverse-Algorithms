@@ -7,7 +7,7 @@ namespace ReverseTest
     [TestClass]
     public class ReverseTests
     {
-        bool testShort = false;
+        bool testShort = true;
         readonly string original = "To be trusted is a greater compliment than to be loved.";
         readonly string reversed = ".devol eb ot naht tnemilpmoc retaerg a si detsurt eb oT";
         
@@ -91,6 +91,12 @@ namespace ReverseTest
         {
             if (original.Length > 10000) Assert.Fail();
             Assert.AreEqual(Reverses.Recursive(original), reversed);
+        }
+
+        [TestMethod]
+        public void BogoTest()
+        {
+            Assert.AreEqual(Reverses.Bogo(original), reversed);
         }
     }
 }
